@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-"""This module creates an empty class named Square"""
+"""This is a docstrings.
+    for a new class: Square.
+    """
 
 
 class Square:
-    """An empty class"""
+    """empty class Square"""
     pass
