@@ -39,19 +39,35 @@ class Rectangle(Base):
         """Returns the informal representation of the object"""
         return"[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}".format(
             self.id, self.__x, self.__y, self.__width, self.__height)
+
     def update(self, *args, **kwargs):
         """update attributes"""
-        attrs = ["id", "width", "height", "x", "y"]
-        count = len(args)
-
-        if not args or count < 1:
-            for key, value in kwargs.items():
-                for i in range(len(attrs)):
-                    if key == attrs[i]:
-                        setattr(self, attrs[i], value)
-        elif args:
-            for i in range(count):
-                setattr(self, attrs[i], args[i])
+        if len(args) > 0:
+            for i in range(len(args)):
+                if i == 0:
+                    self.id = args[i]
+                if i == 1:
+                    self.__width = args[i]
+                if i == 2:
+                    self.__height = args[i]
+                if i == 3:
+                    self.__x = args[i]
+                if i == 4:
+                    self.__y = args[i]
+        else:
+            if len(kwargs) > 0:
+                keys = kwargs.keys()
+                for i in keys:
+                    if i == 'id':
+                        self.id = kwargs['id']
+                    if i == 'width':
+                        self.__width = kwargs['width']
+                    if i == 'height':
+                        self.__height = kwargs['height']
+                    if i == 'x':
+                        self.__x = kwargs['x']
+                    if i == 'y':
+                        self.__y = kwargs['y']
 
     def area(self):
         """Returns the area"""
@@ -112,3 +128,15 @@ class Rectangle(Base):
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
+
+    def to_dictionary(self):
+        """
+        retrieves a dictionary representation
+        of a rectangle
+        """
+        return {
+            "id": self.id,
+            "width": self.__width,
+            "height": self.__height,
+            "x": self.__x,
+            "y": self.__y}
