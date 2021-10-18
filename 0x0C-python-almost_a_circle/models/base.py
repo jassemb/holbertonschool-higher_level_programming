@@ -45,4 +45,3 @@ class Base:
             list_dictionaries.append(model.to_dictionary())
         with open(cls.__name__ + ".json", "w",  encoding='utf-8') as file:
             file.write(Base.to_json_string(list_dictionaries))
-
