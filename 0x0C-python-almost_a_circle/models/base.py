@@ -84,4 +84,4 @@ class Base:
                 for key, value in dict.items():
                     objectdict[key] = value
                 listofinstances.append(cls.create(**objectdict))
-            return listofinstances
+            return L
