@@ -45,3 +45,14 @@ class Base:
             list_dictionaries.append(model.to_dictionary())
         with open(cls.__name__ + ".json", "w",  encoding='utf-8') as file:
             file.write(Base.to_json_string(list_dictionaries))
+
+    @staticmethod
+    def from_json_string(json_string):
+        """
+        returns the list of the JSON string representation json_string
+        """
+        L = []
+        if json_string is None or json_string == "":
+            return L
+        else:
+            return json.loads(json_string)
