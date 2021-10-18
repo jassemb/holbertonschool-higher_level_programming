@@ -4,6 +4,7 @@
 
 import json
 from os import path
+import csv
 
 
 class Base:
@@ -85,3 +86,32 @@ class Base:
                     objectdict[key] = value
                 L.append(cls.create(**objectdict))
             return L
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        writes the CSV string representation of list_objs to a file
+        """
+        with open(cls.__name__ + ".csv", "w", newline='') as csvfile:
+            if cls.__name__ == "Rectangle":
+                fieldnames = ['id', 'width', 'height', 'x', 'y']
+            elif cls.__name__ == "Square":
+                fieldnames = ['id', 'size', 'x', 'y']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            if list_objs is not None:
+                for model in list_objs:
+                    writer.writerow(model.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        if path.exists(cls.__name__ + ".csv") is False:
+            return []
+        with open(cls.__name__ + ".csv", "r", newline='') as csvfile:
+            listofinstances = []
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                for key, value in row.items():
+                    row[key] = int(value)
+                listofinstances.append(cls.create(**row))
+        return listofinstances
