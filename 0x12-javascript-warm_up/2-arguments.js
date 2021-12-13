@@ -6,5 +6,5 @@ if (l === 2) {
 } else if (l === 3) {
   console.log('Argument found');
 } else {
-  console.log('Argument found');
+  console.log('Arguments found');
 }
