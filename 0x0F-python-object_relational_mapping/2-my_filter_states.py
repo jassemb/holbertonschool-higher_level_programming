@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
 Write a script that takes in an argument and displays
-all values in the states table of hbtn_0e_0_usa where name matches the argument.
+all values in the states table of
+hbtn_0e_0_usa where name matches the argument.
 """
 
 
@@ -16,10 +17,9 @@ if __name__ == "__main__":
         user=argv[1],
         password=argv[2],
         database=argv[3],
-
     )
     cursor = db.cursor()
-    sql = "SELECT * FROM states ORDER BY id"
+    sql = "SELECT * FROM states WHERE name= '{}' ORDER BY id".format(argv[4])
     cursor.execute(sql)
     results = cursor.fetchall()
     for row in results:
