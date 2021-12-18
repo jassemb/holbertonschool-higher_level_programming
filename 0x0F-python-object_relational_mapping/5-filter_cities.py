@@ -27,7 +27,13 @@ if __name__ == "__main__":
             ORDER BY cities.id"""
     cursor.execute(sql, (argv[4], ))
     results = cursor.fetchall()
-    for row in results:
-        print(row)
+    if results == ():
+        print("")
+    else:
+        for i in range(len(results)):
+            if i == len(results)-1:
+                print(results[i][0])
+            else:
+                print("{}, ".format(results[i][0]), end="")
     cursor.close()
     db.close()
