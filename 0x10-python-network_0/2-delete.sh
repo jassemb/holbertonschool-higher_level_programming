@@ -1,3 +1,3 @@
 #!/bin/bash
-# display allowed http method 
-curl -s -I -X OPTIONS "$1" | grep 'Allow:' | cut -f2- -d' '
+# Sends a DELETE request to URL and displays the body of the response
+curl -sX DELETE "$1
